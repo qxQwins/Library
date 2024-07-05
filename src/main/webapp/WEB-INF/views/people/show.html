@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text ="${person.getFio()}">value</title>
+</head>
+<body>
+<p th:text ="${person.getFio()  + ', ' +  person.getYearOfBirth()}">value</p>
+<p th:text ="'Email: ' + ${person.getEmail()}">value</p>
+
+
+<div th:if ="${books}">
+    <hr/>
+<p th:text = "'Книги:'"><p/>
+   <p th:each ="book:${books}" th:text="${book.getName()}"> value </p>
+</div>
+
+
+
+<div th:if ="${books == null}"> У этого человека пока что нет книг </div>
+
+<hr/>
+<a th:href="@{{id}/edit(id=${person.getId()})}">Изменить</a>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
+</html>
